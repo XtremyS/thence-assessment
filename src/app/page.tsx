@@ -1,113 +1,266 @@
+"use client";
+import { motion } from "framer-motion";
 import Image from "next/image";
+import MainLogo from "../../public/Common-SVGs/MainLogoSVG";
+import { coveredByYourGraceFont } from "../utils/font";
+import SparkleSVG from "../../public/Common-SVGs/SparkleSVG";
+import RocketSVG from "../../public/Common-SVGs/RocketSVG";
+import RightArrowSVG from "../../public/Common-SVGs/RightArrowSVG";
+import { useState } from "react";
+import CollapseSVG from "../../public/Common-SVGs/CollapseSVG";
+import UnCollapseSVG from "../../public/Common-SVGs/UnCollapseSVG";
+import UnionSVG from "../../public/Common-SVGs/UnionSVG";
+import Link from "next/link";
 
 export default function Home() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(2);
+
+  const faqData = [
+    {
+      question: "Do you offer freelancers?",
+      answer: "Yes, We offer freelancers.",
+    },
+    {
+      question:
+        "What’s the guarantee that I will be satisfied with the hired talent?",
+      answer: "Trust us.",
+    },
+    {
+      question: "Can I hire multiple talents at once?",
+      answer:
+        "If unhappy with a project, communicate with the freelancer, allow for revisions, and refer to the agreement. Escalate to platform support if needed, considering mediation. Review policies, seek collaborative solutions for resolution.",
+    },
+    {
+      question: "Why should I not go to an agency directly?",
+      answer: "Don't Know.",
+    },
+    {
+      question: "Who can help me pick a right skill sets and duration for me?",
+      answer: "No one get yourself maybe?.",
+    },
+  ];
+
+  const toggleAccordion = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="overflow-hidden">
+      <header className="flex items-center justify-between p-4 border border-customBorderColor rounded-customLg">
+        <div className="mx-8">
+          <MainLogo
+            className="fill-[#333333] hover:fill-primaryColor duration-200"
+            iconWidth="120"
+            iconHeight="30"
+          />
         </div>
-      </div>
+        <nav className="space-x-4">
+          <Link
+            href="/register-user"
+            className="lightButtonCommonStyle border border-customBorderColor rounded-customLg"
+          >
+            Get Projects
+          </Link>
+          <button className="darkButtonCommonStyle rounded-customLg">
+            Onboard Talent
+          </button>
+        </nav>
+      </header>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <motion.div
+        className="relative  flex items-center justify-center text-center bg-white my-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2 }}
+      >
+        <div className="max-w-[588px]">
+          <motion.div
+            whileInView={{ y: [-50, 0], opacity: [0, 1] }}
+            transition={{ duration: 1.2 }}
+            className={`${coveredByYourGraceFont.className} text-4xl font-bold mb-4 text-successGreen`}
+          >
+            Success stories
+          </motion.div>
+          <motion.div
+            className="text-5xl font-semibold"
+            whileInView={{ y: [-50, 0], opacity: [0, 1] }}
+            transition={{ duration: 1.2, delay: 0.5 }}
+          >
+            Every success journey we&apos;ve encountered.
+          </motion.div>
+        </div>
+      </motion.div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
+      <motion.section
+        className="my-24 py-24"
+        whileInView={{ y: [-50, 0], opacity: [0, 1] }}
+        transition={{ duration: 1.2 }}
+      >
+        <div className="flex flex-col lg:flex-row justify-between gap-8  bg-white">
+          {/* Left Side */}
+          <div className="relative flex flex-1 justify-end gap-4">
+            <div className="relative">
+              <Image
+                src="/images/girl_profile_pic.png"
+                alt="Profile"
+                width={506}
+                height={546}
+                className="rounded-lg"
+                unoptimized
+              />
+            </div>
+            <motion.div
+              className="p-8 rounded-3xl w-[267px]  absolute top-32 left-32 transform -translate-x-2/4 bg-white shadow-lg flex flex-col items-center gap-5"
+              whileInView={{ x: [-50, 0], opacity: [0, 1] }}
+              transition={{ duration: 1.2 }}
+            >
+              <div className=" w-full relative ">
+                <p className="text-6xl text-primaryColor font-bold">40%</p>
+                <SparkleSVG
+                  iconHeight="79"
+                  iconWidth="79"
+                  className="absolute top-[-3rem] left-[-2rem]"
+                />
+              </div>
+              <p className="text-[#828282]">
+                Achieved reduction in project execution time by optimizing team
+                availability
+              </p>
+            </motion.div>
+            <motion.div
+              className="absolute bottom-10 flex items-center gap-3.5 bg-white p-4 shadow-lg left-40 rounded-customLg"
+              whileInView={{ y: [50, 0], opacity: [0, 1] }}
+              transition={{ duration: 1.2 }}
+            >
+              <div>
+                <RocketSVG iconHeight="52" iconWidth="52" />
+              </div>
+              <div>
+                <p className="font-bold text-2xl text-primaryColor">10 DAYS</p>
+                <p className="text-[#828282] text-base">Staff Deployment</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="px-9 py-10 rounded-3xl w-[290px] absolute bottom-[-3.5rem] right-[-14rem] transform -translate-x-2/4 bg-[#002E18] shadow-lg flex flex-col items-center gap-5"
+              whileInView={{ x: [50, -140], opacity: [0, 1] }}
+              transition={{ duration: 1.2 }}
+            >
+              <div className="flex items-baseline gap-3">
+                <p className="text-6xl text-white font-bold">$0.5</p>
+                <p className="text-[#A6A3A0] text-2xl">MILLION</p>
+              </div>
+              <p className="text-gray-300">
+                Reduced client expenses by saving on hiring and employee costs.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Right Side */}
+          <div className="flex flex-col justify-between  px-32 w-full max-w-[50%] gap-4 ">
+            <div className="space-y-10">
+              <h2 className="text-[40px] font-semibold">
+                Enhance fortune 50 company&apos;s insights teams research
+                capabilities
+              </h2>
+              <div className="flex items-center gap-2">
+                <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                <div className="h-2 w-2 rounded-full bg-gray-300"></div>
+                <div className="h-2 w-2 rounded-full bg-gray-300"></div>
+              </div>
+            </div>
+            <div>
+              <button className="darkButtonCommonStyle rounded-customLg group flex items-center gap-3">
+                Explore More{" "}
+                <RightArrowSVG
+                  iconHeight="16"
+                  iconWidth="16"
+                  className="fill-white group-hover:translate-x-2 duration-200"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        className="my-20 bg-[#E8EEE7] rounded-customMd"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2 }}
+      >
+        <div className="grid grid-cols-2 p-14 rounded-lg relative">
+          <div>
+            <motion.div
+              whileInView={{ y: [-50, 0], opacity: [0, 1] }}
+              transition={{ duration: 1.2 }}
+              className={`${coveredByYourGraceFont.className} text-4xl font-bold mb-4 text-[#9E9D9D]`}
+            >
+              What&apos;s on your mind
+            </motion.div>
+
+            <h2 className="text-6xl font-bold mb-5 text-primaryColor">
+              Ask Questions
+            </h2>
+          </div>
+          <UnionSVG
+            iconHeight="514"
+            iconWidth="491"
+            className="absolute bottom-[-8rem]"
+          />
+          <div>
+            {faqData.map((faq, index) => (
+              <div key={index} className="border-b border-[#D7D7D7] ">
+                <div
+                  className="flex justify-between items-center py-8  cursor-pointer "
+                  onClick={() => toggleAccordion(index)}
+                >
+                  <h2 className="text-xl max-w-xl font-semibold">
+                    {faq.question}
+                  </h2>
+                  <span>
+                    {activeIndex === index ? (
+                      <UnCollapseSVG
+                        iconHeight="14"
+                        iconWidth="14"
+                        className="fill-black"
+                      />
+                    ) : (
+                      <CollapseSVG
+                        iconHeight="14"
+                        iconWidth="14"
+                        className="fill-black"
+                      />
+                    )}
+                  </span>
+                </div>
+
+                {activeIndex === index && faq.answer && (
+                  <motion.section
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1.2 }}
+                  >
+                    <h3 className="pr-2 py-2  text-base text-[#617275]">
+                      {faq.answer}
+                    </h3>
+                  </motion.section>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      <footer className="mt-24 px-12 text-center bg-footerBg rounded-3xl h-36 flex items-center justify-between">
+        <p>© 2023. All rights reserved</p>
+        <div className="flex items-center gap-14">
+          <p className="text-lg underline underline-offset-1">
+            Terms & Conditions
           </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+          <p className="text-lg underline underline-offset-1">Privacy Policy</p>
+        </div>
+      </footer>
+    </div>
   );
 }

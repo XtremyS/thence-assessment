@@ -1,20 +1,44 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: ["class"],
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
+
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      screens: {
+        xl: "1440px",
+      },
+      borderRadius: {
+        customLg: "107px",
+        customMd: "40px",
+      },
+      colors: {
+        lightButton: {
+          primaryBg: "#FFFF",
+          primaryText: "#1C1C1C",
+          hoverBg: "#F1F1F1",
+          hoverText: "#1C1C1C",
+        },
+        darkButton: {
+          primaryBg: "#1C1C1C",
+          primaryText: "#FFFF",
+          hoverBg: "#4E4E4E",
+          hoverText: "#FFFF",
+          disabledBg: "#C9C9C9",
+          disabledText: "#FFFF",
+        },
+        footerBg: "#F5F5F5",
+        customBorderColor: "#EAEAEA",
+        successGreen: "#2DA950",
+        inputBg: "#EFEFEF",
+        primaryColor: "#1C1C1C",
       },
     },
   },
   plugins: [],
 };
-export default config;
